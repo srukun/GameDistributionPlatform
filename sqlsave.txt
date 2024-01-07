@@ -1,0 +1,170 @@
+Create Table UserAccount(
+	UserID Int Primary Key Auto_Increment,
+    Username Varchar(100) Not Null,
+    Email Varchar(100) Not Null,
+    Password Varchar(100) Not Null,
+    DateOfBirth Date,
+    ProfilePicture Varchar(255),
+    Bio Text,
+    UserType Varchar(30) Not Null
+);
+
+CREATE TABLE Game (
+    GameID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(100) NOT NULL,
+    Description TEXT,
+    Genre VARCHAR(50),
+    ReleaseDate DATE,
+    Developer VARCHAR(100),
+    Publisher VARCHAR(100),
+    Price DECIMAL(10, 2), 
+    AverageRating DECIMAL(3, 2) 
+);
+
+CREATE TABLE Library (
+    LibraryID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    GameID INT NOT NULL,
+    PurchaseDate DATE,
+    PlaytimeHours DECIMAL(5, 2),
+    Status VARCHAR(20),
+    FOREIGN KEY (UserID) REFERENCES UserAccount(UserID),
+    FOREIGN KEY (GameID) REFERENCES Game(GameID)
+);
+CREATE TABLE Friendship (
+    FriendshipID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID1 INT NOT NULL,
+    UserID2 INT NOT NULL,
+    Status VARCHAR(20),
+    FOREIGN KEY (UserID1) REFERENCES UserAccount(UserID),
+    FOREIGN KEY (UserID2) REFERENCES UserAccount(UserID)
+);
+CREATE TABLE Message (
+    MessageID INT PRIMARY KEY AUTO_INCREMENT,
+    SenderID INT NOT NULL,
+    ReceiverID INT NOT NULL,
+    MessageContent TEXT,
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (SenderID) REFERENCES UserAccount(UserID),
+    FOREIGN KEY (ReceiverID) REFERENCES UserAccount(UserID)
+);
+
+CREATE TABLE Reviews (
+    ReviewID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    GameID INT NOT NULL,
+    Rating DECIMAL(3, 2),
+    ReviewText TEXT,
+    DatePosted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES UserAccount(UserID),
+    FOREIGN KEY (GameID) REFERENCES Game(GameID)
+);
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    GameID INT NOT NULL,
+    TransactionDate DATE,
+    TransactionType VARCHAR(20),
+    Amount DECIMAL(10, 2),
+    FOREIGN KEY (UserID) REFERENCES UserAccount(UserID),
+    FOREIGN KEY (GameID) REFERENCES Game(GameID)
+);
+
+INSERT INTO `UserAccount` (`Username`, `Email`, `Password`, `DateOfBirth`, `ProfilePicture`, `Bio`, `UserType`)
+VALUES
+('ThunderSz', 'thunderSz21@email.com', 'abasbc123', '1995-07-15', 'placeholderURL', 'Passionate about gaming since childhood', 'Gamer'),
+('AnimeFan', 'lituwei983@gmail.com', 'qwerty456', '1990-12-28', 'placeholderURL', 'Avid gamer exploring new gaming realms', 'Gamer'),
+('PurpleStudio', 'PurpleStudio@gmail.com', 'p@ssw0rd', '1988-04-03', 'placeholderURL', 'Enthusiastic gamer seeking thrilling adventures', 'Studio'),
+('blanks', 'johndoe928h@hotmail.com', 'blueCat9128@', '2000-09-20', 'placeholderURL', 'Always up for gaming challenges','Gamer'),
+('gameMaster', 'masterofgames@yahoo.com', 'letmein789', '1985-01-10', 'placeholderURL', 'Dedicated to mastering all game genres', 'Gamer');
+
+INSERT INTO `Game` (`Title`, `Description`, `Genre`, `ReleaseDate`, `Developer`, `Publisher`, `Price`, `AverageRating`, `Picture`)
+VALUES
+('Galactic Quest', 'Embark on a space adventure to save the galaxy from impending doom!', 'Sci-Fi', '2023-03-15', 'Space Studios', 'Stellar Games Inc.', 49.99, 4.5, 'placeholderURL'),
+('Cyber Assault', 'Futuristic cyberpunk adventure with thrilling action-packed missions!', 'Action', '2023-07-05', 'Neon Bytes', 'TechGlobe Studios', 59.99, 4.8, 'placeholderURL'),
+('Digital Chronicles', 'Explore a virtual world in this tech-infused adventure!', 'Sci-Fi', '2022-11-28', 'Innovate Gaming', 'TechVision Entertainment', 34.99, 4.3, 'placeholderURL'),
+('Nanotech Warfare', 'Engage in battles using cutting-edge nanotechnology!', 'Shooter', '2022-05-12', 'NanoSystems', 'FutureTech Games Co.', 44.99, 4.6, 'placeholderURL'),
+('Cybernetic Odyssey', 'Journey through a cybernetic landscape in search of truth and power!', 'Sci-Fi', '2023-01-30', 'CyberForge Studios', 'Digital Realms Inc.', 54.99, 4.4, 'placeholderURL');
+
+INSERT INTO `Game` (`Title`, `Description`, `Genre`, `ReleaseDate`, `Developer`, `Publisher`, `Price`, `AverageRating`, `Picture`)
+VALUES
+('Prehistoric Exploration', 'Explore the ancient world of dinosaurs and mysteries!', 'Adventure', '2023-12-19', 'Innovate Gaming', 'Innovate Gaming', 19.99, 4.9, 'placeholderURL');
+
+INSERT INTO `Library` (`UserID`, `GameID`, `PurchaseDate`, `PlaytimeHours`, `Status`)
+VALUES
+(1, 1, '2023-06-10', 15.00, 'Owned'), -- User 1 owns Game 1
+(1, 3, '2023-07-01', 8.00, 'Owned'), -- User 1 owns Game 3
+(2, 3, '2023-05-20', 25.00, 'Owned'), -- User 2 owns Game 3
+(2, 4, '2023-08-05', 10.00, 'Owned'), -- User 2 owns Game 4
+(3, 1, '2023-04-12', 18.00, 'Owned'), -- User 3 owns Game 1
+(3, 2, '2023-09-02', 12.00, 'Owned'), -- User 3 owns Game 2
+(3, 4, '2023-07-25', 30.00, 'Owned'), -- User 3 owns Game 4
+(4, 1, '2023-08-17', 20.00, 'Owned'), -- User 4 owns Game 1
+(4, 5, '2023-06-30', 22.00, 'Owned'), -- User 4 owns Game 5
+(5, 2, '2023-05-05', 14.00, 'Owned'), -- User 5 owns Game 2
+(5, 3, '2023-07-15', 19.00, 'Owned'), -- User 5 owns Game 3
+(5, 4, '2023-08-28', 27.00, 'Owned'); -- User 5 owns Game 4
+
+INSERT INTO `Friendship` (`UserID1`, `UserID2`, `Status`)
+VALUES
+(1, 2, 'Accepted'), -- User 1 and User 2 are friends
+(2, 3, 'Pending'), -- User 2 has sent a friend request to User 3 (pending)
+(3, 4, 'Accepted'), -- User 3 and User 4 are friends
+(4, 5, 'Accepted'), -- User 4 and User 5 are friends
+(5, 1, 'Rejected'); -- User 5 rejected the friend request from User 1
+
+INSERT INTO `Message` (`SenderID`, `ReceiverID`, `MessageContent`, `Timestamp`)
+VALUES
+(1, 2, 'Hey there!', '2023-12-10 10:30:00'), -- Message from User 1 to User 2
+(2, 3, 'Hi, how are you?', '2023-12-12 15:20:00'), -- Message from User 2 to User 3
+(3, 4, 'Let\'s catch up!', '2023-12-14 18:45:00'), -- Message from User 3 to User 4
+(4, 5, 'Sure, let\'s plan something.', '2023-12-16 09:10:00'), -- Message from User 4 to User 5
+(5, 1, 'Sorry\, not interested.', '2023-12-18 12:00:00'); -- Message from User 5 to User 1
+
+INSERT INTO `Reviews` (`UserID`, `GameID`, `Rating`, `ReviewText`, `DatePosted`)
+VALUES
+(1, 2, 4.5, 'Great gameplay and storyline!', '2023-11-25 14:00:00'), -- User 1's review for Game 2
+(2, 3, 4.0, 'Good graphics but needs improvement in controls.', '2023-12-03 16:30:00'), -- User 2's review for Game 3
+(3, 1, 5.0, 'Absolutely fantastic! Must play!', '2023-12-08 11:45:00'), -- User 3's review for Game 1
+(4, 4, 3.1, 'Decent game, enjoyable storyline.', '2023-12-14 09:20:00'), -- User 4's review for Game 4
+(5, 5, 2.2, 'Fun gameplay, but needs more content.', '2023-12-20 13:10:00'); -- User 5's review for Game 5
+
+INSERT INTO `Transactions` (`UserID`, `GameID`, `TransactionDate`, `TransactionType`, `Amount`)
+VALUES
+(1, 2, '2023-12-05', 'Purchase', 29.99), -- User 1 purchased Game 2
+(2, 3, '2023-12-10', 'Purchase', 39.99), -- User 2 purchased Game 3
+(3, 1, '2023-12-12', 'Purchase', 49.99), -- User 3 purchased Game 1
+(4, 4, '2023-12-15', 'Purchase', 44.99), -- User 4 purchased Game 4
+(5, 5, '2023-12-18', 'Purchase', 34.99); -- User 5 purchased Game 5
+
+TRUNCATE TABLE Library;
+TRUNCATE TABLE Friendship;
+TRUNCATE TABLE Message;
+TRUNCATE TABLE Reviews;
+TRUNCATE TABLE Transactions;
+
+select * From Game;
+Update Game
+Set Picture = './GameImages/Cyber Assault.png'
+Where GameID = 2;
+
+Update Game
+Set Picture = './GameImages/Cybernetic Odyssey.png'
+Where GameID = 5;
+
+Update Game
+Set Picture = './GameImages/Digital Cronicles.png'
+Where GameID = 3;
+
+Update Game
+Set Picture = './GameImages/Galatic Quest.png'
+Where GameID = 1;
+
+Update Game
+Set Picture = './GameImages/Nanotech Warfare.png'
+Where GameID = 4;
+
+Update Game
+Set Picture = 'GameImages/Prehistoric Exploration.jpeg'
+Where GameID = 6;
+
