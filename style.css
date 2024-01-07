@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+.home-navagation{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vh;
+    color: black;
+}
+.home-navagation ul{
+    list-style: none;
+}
+.home-navagation ul li{
+    display: inline;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+.home-navagation ul li a{
+    text-decoration: none;
+    color: black;
+}
+.home-navagation-game-platform-links{
+    width: 70%;
+}
+.home-navagation-game-platform-logo, .home-navagation-game-platform-extra{
+    width: 15%;
+}
+.home-navagation-game-platform-links, .home-navagation-game-platform-logo, .home-navagation-game-platform-extra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.home-main-content{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.home-main-games{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    width: 50%;
+}
+.home-main-game-display{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.home-main-game-0 {
+    margin-bottom: 1vh;
+    width: 35vw;
+    height: 35vh;
+    border-radius: 5%;
+    content: url(./GameImages/Prehistoric\ Exploration.jpeg);
+    object-fit: cover;
+    object-position: top;
+}
+
+
+
+.home-main-games-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15vh;
+}
+
+
+.home-main-content-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.home-main-content-info p{
+    text-align: left;
+    font-size: 2vh;
+    margin-bottom: 3vh;
+}
+.home-main-content-info button{
+    font-size: 2.25vh;
+    width: 15vw;
+    height: 7.5vh;
+    border: none;
+    background: #7FCAA2;
+    color: white;
+    border-radius: 1.5vh;
+}
+
+/*STORE PAGE*/
+.store-main-content{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+}
+
+.store-game-display-item{
+    width: 60vw;
+    height: 17.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: 2px solid #7FCAA2;
+    border-radius: .5vh;
+    margin-bottom: 1vh;
+}
+.store-games-display-img{
+    width: 20vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.store-games-display-img img{
+    width: 80%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: .5vh;
+}
+.store-games-display-info{
+    width: 20vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.store-games-purchase-info{
+    width: 20vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.store-games-purchase-info p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 25%;
+}
+.store-games-purchase-info button{
+    width: 50%;
+    height: 25%;
+    border: none;
+    font-size: 1.75vh;
+    background: #7FCAA2;
+    color: white;
+    border-radius: .5vh;
+}
+.store-games-display-title{
+    font-size: 2.5vh;
+}
+.store-games-display-tags{
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    column-gap: 2vh;
+    row-gap: 1vh;
+}
+.store-games-display-tags p{
+    font-size: 1.45vh;
+}
+.store-game-navagation{
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+}
+.store-game-navagation button{
+    width: 5vh;
+    height: 5vh;
+    border: none;
+    font-size: 3vh;
+    background: #7FCAA2;
+    color: white;
+    border-radius: .5vh;
+}
